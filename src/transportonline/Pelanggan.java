@@ -40,14 +40,14 @@ public class Pelanggan extends Orang {
     public void createPesanan(String idTrans, String jenisPesanan,
             String tujuan, int jarak, int tarif) {
         pesanan[jmlPesanan] = new Pesanan(idTrans, jenisPesanan,
-                tujuan, jarak, tarif);
+                tujuan, jarak, tarif, super.getJenKel());
         jmlPesanan++;
     }
 
     public void createPesananKurir(String idTrans, String jenisPesanan,
             String tujuan, int jarak, int tarif, String namaBarang) {
         pesanan[jmlPesanan] = new Kurir(idTrans, jenisPesanan,
-                tujuan, jarak, tarif, namaBarang);
+                tujuan, jarak, tarif, namaBarang, super.getJenKel());
         jmlPesanan++;
     }
 

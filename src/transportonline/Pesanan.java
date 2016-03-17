@@ -10,58 +10,82 @@ package transportonline;
  * @author Rayiemas Manggala P
  */
 public class Pesanan {
+
     private String idTrans;
     private String jenisPesanan;
     private String tujuan;
     private int tarif;
     private int jarak;
-    
-    public Pesanan (String idTrans, String jenisPesanan, String tujuan, int tarif, int jarak) {
-        this.idTrans=idTrans;
-        this.jenisPesanan=jenisPesanan;
-        this.tujuan=tujuan;
-        this.tarif=tarif;
-        this.jarak=jarak;
+    private boolean status;
+    private String jk;
+
+    public Pesanan(String idTrans, String jenisPesanan, String tujuan,
+            int tarif, int jarak, String jk) {
+        this.idTrans = idTrans;
+        this.jenisPesanan = jenisPesanan;
+        this.tujuan = tujuan;
+        this.tarif = tarif;
+        this.jarak = jarak;
+        this.status = true;
+        this.jk = jk;
     }
-    
-    public void setIdTrans (String idTrans){
-        this.idTrans=idTrans;
+
+    public void setIdTrans(String idTrans) {
+        this.idTrans = idTrans;
     }
-    
+
     public String getIdTrans() {
         return idTrans;
     }
-    
-    public void setJenisPesanan (String jenisPesanan) {
-        this.jenisPesanan=jenisPesanan;
+
+    public void setJenisPesanan(String jenisPesanan) {
+        this.jenisPesanan = jenisPesanan;
     }
-    
+
     public String getJenisPesanan() {
         return jenisPesanan;
     }
-    
-    public void setTujuan(String tujuan) {
-        this.tujuan=tujuan;
+
+    public void setTaken() {
+        if(this.status){
+            this.status = false;
+        }
     }
-    
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setTujuan(String tujuan) {
+        this.tujuan = tujuan;
+    }
+
     public String getTujuan() {
         return tujuan;
     }
-    
-    public void setTarif(int tarif){
-        this.tarif=tarif;
+
+    public void setTarif(int tarif) {
+        this.tarif = tarif;
     }
-    
+
     public int getTarif() {
         return tarif;
     }
-    
+
     public void setJarak(int jarak) {
-        this.jarak=jarak;
+        this.jarak = jarak;
     }
-    
-    public int getJarak(){
+
+    public int getJarak() {
         return jarak;
     }
-}
 
+    public String getJk() {
+        return jk;
+    }
+
+    public void setJk(String jk) {
+        this.jk = jk;
+    }
+    
+}

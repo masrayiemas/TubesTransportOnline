@@ -30,8 +30,17 @@ public class Pengemudi extends Orang {
     }
 
     public void addPesanan(Pesanan p) {
-        pesanan[jmlPesanan] = p;
-        jmlPesanan++;
+        if (p.getJenisPesanan().equals("Kurir")) {
+            pesanan[jmlPesanan] = p;
+            p.setTaken();
+            jmlPesanan++;
+        } else if (p.getJk().equals(super.getJenKel())) {
+            pesanan[jmlPesanan] = p;
+            p.setTaken();
+            jmlPesanan++;
+        } else {
+            System.out.println("Anda Tidak Bisa Mengambil Pesanan ini.");
+        }
     }
 
     public Pesanan getPesanan(int n) {

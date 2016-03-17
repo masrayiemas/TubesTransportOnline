@@ -12,8 +12,9 @@ package transportonline;
 public class Kurir extends Pesanan{
     private String namaBarang;
     
-    public Kurir(String idTrans, String jenisPesanan, String tujuan, int tarif, int jarak, String namaBarang) {
-        super(idTrans, jenisPesanan, tujuan, tarif, jarak);
+    public Kurir(String idTrans, String jenisPesanan, String tujuan, int tarif, 
+            int jarak, String namaBarang, String jk) {
+        super(idTrans, jenisPesanan, tujuan, tarif, jarak, jk);
         this.namaBarang=namaBarang;
     }
     
