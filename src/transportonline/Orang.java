@@ -14,6 +14,11 @@ public abstract class Orang {
     private String jenKel;
     private String noTelp;
     
+    public Orang(String nama, String jenkel, String noTelp){
+        this.nama = nama;
+        this.jenKel = jenkel;
+        this.noTelp = noTelp;
+    } 
     public void setNama(String nama){
         this.nama=nama;
     }
