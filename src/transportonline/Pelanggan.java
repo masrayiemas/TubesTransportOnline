@@ -13,7 +13,6 @@ public class Pelanggan extends Orang {
 
     private Pesanan[] pesanan;
     private long idPelanggan;
-    private String alamat;
     private int jmlPesanan;
 
     public Pelanggan(String nama, String jenKel, String noTelp) {
@@ -29,25 +28,17 @@ public class Pelanggan extends Orang {
         this.idPelanggan = idPelanggan;
     }
 
-    public String getAlamat() {
-        return alamat;
-    }
-
-    public void setAlamat(String alamat) {
-        this.alamat = alamat;
-    }
-
-    public void createPesanan(String idTrans, String jenisPesanan,
+    public void createPesanan(String idTrans, String jenisPesanan, String alamat,
             String tujuan, int jarak, int tarif) {
-        pesanan[jmlPesanan] = new Pesanan(idTrans, jenisPesanan,
+        pesanan[jmlPesanan] = new Pesanan(idTrans, jenisPesanan, alamat,
                 tujuan, jarak, tarif, super.getJenKel());
         jmlPesanan++;
     }
 
-    public void createPesananKurir(String idTrans, String jenisPesanan,
+    public void createPesananKurir(String idTrans, String jenisPesanan, String alamat,
             String tujuan, int jarak, int tarif, String namaBarang) {
         pesanan[jmlPesanan] = new Kurir(idTrans, jenisPesanan,
-                tujuan, jarak, tarif, namaBarang, super.getJenKel());
+                alamat, tujuan, jarak, tarif, namaBarang, super.getJenKel());
         jmlPesanan++;
     }
 

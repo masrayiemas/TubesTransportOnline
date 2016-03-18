@@ -16,15 +16,17 @@ public class Pesanan {
     private String tujuan;
     private int tarif;
     private int jarak;
+    private String alamat;
     private boolean status;
     private String jk;
 
-    public Pesanan(String idTrans, String jenisPesanan, String tujuan,
+    public Pesanan(String idTrans, String jenisPesanan, String alamat, String tujuan,
             int tarif, int jarak, String jk) {
         this.idTrans = idTrans;
         this.jenisPesanan = jenisPesanan;
         this.tujuan = tujuan;
         this.tarif = tarif;
+        this.alamat = alamat;
         this.jarak = jarak;
         this.status = true;
         this.jk = jk;
@@ -36,6 +38,14 @@ public class Pesanan {
 
     public String getIdTrans() {
         return idTrans;
+    }
+    
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 
     public void setJenisPesanan(String jenisPesanan) {
