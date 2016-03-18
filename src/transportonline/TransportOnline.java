@@ -24,7 +24,7 @@ public class TransportOnline {
         p1.createPesanan("T001", "Transportasi", "Buahbatu", "Dago", 20, 15000);
         p1.createPesanan("T002", "Transportasi", "Bandara", "ITB", 25, 18000);
         p1.createPesananKurir("K001", "Kurir", "Antapani", "Buah Batu", 25, 18000, "Makanan");
-        p2.createPesanan("T002", "Transportasi", "Stasiun Kiaracondong", "Telkom Univ", 10, 13000);
+        p2.createPesanan("T003", "Transportasi", "Stasiun Kiaracondong", "Telkom Univ", 10, 13000);
         p2.createPesananKurir("K002", "Kurir", "PBB", "PBR", 5, 5000, "Pakaian");
         
         d1.addPesanan(p1.getPesanan(0));
@@ -33,8 +33,8 @@ public class TransportOnline {
         d2.addPesanan(p2.getPesanan(0));
         
         System.out.println(p1.getPesanan(0).getStatus());
-        
-        
+        p1.removePesanan("T002");
+        d1.removePesanan("T002");
         
     }
     

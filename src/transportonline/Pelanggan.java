@@ -51,6 +51,7 @@ public class Pelanggan extends Orang {
                     pesanan[j] = pesanan[j + 1];
                 }
                 jmlPesanan--;
+                System.out.println("Data Berhasil Dihapus.");
                 break;
             }
         }
