@@ -11,8 +11,8 @@ package transportonline;
  */
 public class Pengemudi extends Orang {
 
-    private Pesanan[] pesanan;
-    private long idPengemudi;
+  private Pesanan[] pesanan;
+    private String idPengemudi;
     private int jmlPesanan;
     private static int countPeng;
 
@@ -21,13 +21,14 @@ public class Pengemudi extends Orang {
         pesanan = new Pesanan[100];
         jmlPesanan = 0;
         countPeng++;
+        this.setIdPengemudi(makeIdPengemudi());
     }
 
-    public long getIdPengemudi() {
+    public String getIdPengemudi() {
         return idPengemudi;
     }
 
-    public void setIdPengemudi(long idPengemudi) {
+    public void setIdPengemudi(String idPengemudi) {
         this.idPengemudi = idPengemudi;
     }
 
@@ -65,5 +66,21 @@ public class Pengemudi extends Orang {
         if (found == false) {
             System.out.println("Pesanan Tidak Ditemukan.");
         }
+    }
+    
+    public int getJmlPesanan() {
+        return jmlPesanan;
+    }
+    
+    public String makeIdPengemudi() {
+        String id = "D";
+        if (Pengemudi.countPeng / 10 > 9) {
+            id = id + Pengemudi.countPeng;
+        } else if (Pengemudi.countPeng / 10 > 0) {
+            id = id + "0" + Pengemudi.countPeng;
+        } else {
+            id = id + "00" + Pengemudi.countPeng;
+        }
+        return id;
     }
 }

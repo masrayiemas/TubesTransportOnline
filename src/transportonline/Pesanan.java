@@ -19,11 +19,12 @@ public class Pesanan {
     private String alamat;
     private boolean status;
     private String jk;
-    protected static int countTrans; 
+    protected static int countTrans;
 
-    public Pesanan(String idTrans, String jenisPesanan, String alamat, String tujuan,
+    public Pesanan(String jenisPesanan, String alamat, String tujuan,
             int tarif, int jarak, String jk) {
-        this.idTrans = idTrans;
+        countTrans++;
+        this.setIdTrans(makeIdTrans());
         this.jenisPesanan = jenisPesanan;
         this.tujuan = tujuan;
         this.tarif = tarif;
@@ -31,7 +32,7 @@ public class Pesanan {
         this.jarak = jarak;
         this.status = true;
         this.jk = jk;
-        countTrans++;
+
     }
 
     public void setIdTrans(String idTrans) {
@@ -41,7 +42,7 @@ public class Pesanan {
     public String getIdTrans() {
         return idTrans;
     }
-    
+
     public String getAlamat() {
         return alamat;
     }
@@ -59,7 +60,7 @@ public class Pesanan {
     }
 
     public void setTaken() {
-        if(this.status){
+        if (this.status) {
             this.status = false;
         }
     }
@@ -98,6 +99,18 @@ public class Pesanan {
 
     public void setJk(String jk) {
         this.jk = jk;
+    }
+
+    public String makeIdTrans() {
+        String id = "T";
+        if (Pesanan.countTrans / 10 > 9) {
+            id = id + Pesanan.countTrans;
+        } else if (Pesanan.countTrans / 10 > 0) {
+            id = id + "0" + Pesanan.countTrans;
+        } else {
+            id = id + "00" + Pesanan.countTrans;
+        }
+        return id;
     }
     
 }

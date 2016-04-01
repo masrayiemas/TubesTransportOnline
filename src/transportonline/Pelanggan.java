@@ -12,7 +12,7 @@ package transportonline;
 public class Pelanggan extends Orang {
 
     private Pesanan[] pesanan;
-    private long idPelanggan;
+    private String idPelanggan;
     private int jmlPesanan;
     private static int countPel;
 
@@ -20,26 +20,27 @@ public class Pelanggan extends Orang {
         super(nama, jenKel, noTelp);
         pesanan = new Pesanan[100];
         countPel++;
+        this.setIdPelanggan(makeIdPelanggan());
     }
 
-    public long getIdPelanggan() {
+    public String getIdPelanggan() {
         return idPelanggan;
     }
 
-    public void setIdPelanggan(long idPelanggan) {
+    public void setIdPelanggan(String idPelanggan) {
         this.idPelanggan = idPelanggan;
     }
 
-    public void createPesanan(String idTrans, String jenisPesanan, String alamat,
+    public void createPesanan(String jenisPesanan, String alamat,
             String tujuan, int jarak, int tarif) {
-        pesanan[jmlPesanan] = new Pesanan(idTrans, jenisPesanan, alamat,
+        pesanan[jmlPesanan] = new Pesanan(jenisPesanan, alamat,
                 tujuan, jarak, tarif, super.getJenKel());
         jmlPesanan++;
     }
 
-    public void createPesananKurir(String idTrans, String jenisPesanan, String alamat,
+    public void createPesananKurir(String jenisPesanan, String alamat,
             String tujuan, int jarak, int tarif, String namaBarang) {
-        pesanan[jmlPesanan] = new Kurir(idTrans, jenisPesanan,
+        pesanan[jmlPesanan] = new Kurir(jenisPesanan,
                 alamat, tujuan, jarak, tarif, namaBarang, super.getJenKel());
         jmlPesanan++;
     }
@@ -65,7 +66,7 @@ public class Pelanggan extends Orang {
     public Pesanan getPesanan(int n) {
         return pesanan[n];
     }
-    
+
     public Pesanan getPesanan(String idTrans) {
         boolean found = false;
         Pesanan p = null;
@@ -81,6 +82,18 @@ public class Pelanggan extends Orang {
 
     public int getJmlPesanan() {
         return jmlPesanan;
+    }
+
+    public String makeIdPelanggan() {
+        String id = "P";
+        if (Pelanggan.countPel / 10 > 9) {
+            id = id + Pelanggan.countPel;
+        } else if (Pelanggan.countPel / 10 > 0) {
+            id = id + "0" + Pelanggan.countPel;
+        } else {
+            id = id + "00" + Pelanggan.countPel;
+        }
+        return id;
     }
     
 }
