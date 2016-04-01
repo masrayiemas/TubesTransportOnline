@@ -16,7 +16,7 @@ public class TransportOnline {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Pelanggan p1 = new Pelanggan("Rayie", "L", "085258382648");
+        /*Pelanggan p1 = new Pelanggan("Rayie", "L", "085258382648");
         Pelanggan p2 = new Pelanggan("Susi", "P", "081258238248");
         Pengemudi d1 = new Pengemudi("Sukiman", "L", "081546259325");
         Pengemudi d2 = new Pengemudi("Mawari", "P", "081546259325");
@@ -34,7 +34,9 @@ public class TransportOnline {
         
         System.out.println(p1.getPesanan(0).getStatus());
         p1.removePesanan("T002");
-        d1.removePesanan("T002");
+        d1.removePesanan("T002");*/
+        ConsoleApp c = new ConsoleApp();
+        c.mainMenu();
         
     }
     

@@ -14,10 +14,12 @@ public class Pelanggan extends Orang {
     private Pesanan[] pesanan;
     private long idPelanggan;
     private int jmlPesanan;
+    private static int countPel;
 
     public Pelanggan(String nama, String jenKel, String noTelp) {
         super(nama, jenKel, noTelp);
         pesanan = new Pesanan[100];
+        countPel++;
     }
 
     public long getIdPelanggan() {
@@ -63,4 +65,22 @@ public class Pelanggan extends Orang {
     public Pesanan getPesanan(int n) {
         return pesanan[n];
     }
+    
+    public Pesanan getPesanan(String idTrans) {
+        boolean found = false;
+        Pesanan p = null;
+        for (int i = 0; i < jmlPesanan; i++) {
+            if (pesanan[i].getIdTrans().equals(idTrans)) {
+                found = true;
+                p = pesanan[i];
+                break;
+            }
+        }
+        return p;
+    }
+
+    public int getJmlPesanan() {
+        return jmlPesanan;
+    }
+    
 }

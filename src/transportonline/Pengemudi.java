@@ -14,11 +14,13 @@ public class Pengemudi extends Orang {
     private Pesanan[] pesanan;
     private long idPengemudi;
     private int jmlPesanan;
+    private static int countPeng;
 
     public Pengemudi(String nama, String jenKel, String noTelp) {
         super(nama, jenKel, noTelp);
         pesanan = new Pesanan[100];
         jmlPesanan = 0;
+        countPeng++;
     }
 
     public long getIdPengemudi() {

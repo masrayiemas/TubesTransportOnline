@@ -19,6 +19,7 @@ public class Pesanan {
     private String alamat;
     private boolean status;
     private String jk;
+    protected static int countTrans; 
 
     public Pesanan(String idTrans, String jenisPesanan, String alamat, String tujuan,
             int tarif, int jarak, String jk) {
@@ -30,6 +31,7 @@ public class Pesanan {
         this.jarak = jarak;
         this.status = true;
         this.jk = jk;
+        countTrans++;
     }
 
     public void setIdTrans(String idTrans) {

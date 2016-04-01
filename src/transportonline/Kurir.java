@@ -16,6 +16,7 @@ public class Kurir extends Pesanan{
             int jarak, String namaBarang, String jk) {
         super(idTrans, jenisPesanan, alamat, tujuan, tarif, jarak, jk);
         this.namaBarang=namaBarang;
+        Pesanan.countTrans++;
     }
     
     public void setNamaBarang(String namaBarang) {
