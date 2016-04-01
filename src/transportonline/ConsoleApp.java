@@ -16,7 +16,7 @@ public class ConsoleApp {
 
     Scanner in = new Scanner(System.in);
     boolean ex = false;
-    
+    int c = 0;
     ArrayList<Pelanggan> pelanggan = new ArrayList<>();
     ArrayList<Pengemudi> pengemudi = new ArrayList<>();
 
@@ -180,7 +180,6 @@ public class ConsoleApp {
         switch (a) {
             case 1:
                 ambilPesanan(p);
-                menuPengemudi(p);
                 break;
             case 2:
                 viewPesananPengemudi(p);
@@ -194,7 +193,7 @@ public class ConsoleApp {
 
 //----------------------OPERASI----------------------------------
     //view Pesanan All
-    public void viewPesanan(Pengemudi p, int c) {
+    public void viewPesanan(Pengemudi p) {
         for (Pelanggan x : pelanggan) {
             for (int i = 0; i < x.getJmlPesanan(); i++) {
                 if ((x.getJenKel().equals(p.getJenKel()))
@@ -314,22 +313,23 @@ public class ConsoleApp {
     }
 
     public void ambilPesanan(Pengemudi p) {
-        int c = 0;
-        viewPesanan(p, c);
+        
+        viewPesanan(p);
         if (c > 0) {
             System.out.println("Masukkan ID Transaksi : ");
             String a = in.next();
             for (Pelanggan x : this.pelanggan) {
+                System.out.println(x.getNama());
                 if (x.getPesanan(a).getIdTrans().equals(a)) {
                     p.addPesanan(x.getPesanan(a));
+                    c = 0;
                     break;
                 }
             }
         } else {
             System.out.println("Data Tidak Tersedia");
-            menuPengemudi(p);
         }
-
+        menuPengemudi(p);
     }
 
     //Main Menu
