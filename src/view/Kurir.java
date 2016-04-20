@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -347,6 +348,9 @@ public class Kurir extends javax.swing.JFrame {
         this.jTextFieldTujuan = jTextFieldTujuan;
     }
     
+    public void AddListener(ActionListener e) {
+        jButtonPesan.addActionListener(e);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonPesan;

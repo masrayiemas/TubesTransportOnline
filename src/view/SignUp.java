@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -203,6 +204,11 @@ public class SignUp extends javax.swing.JFrame {
     public void setjTextField3(JTextField jTextField3) {
         this.jTextField3 = jTextField3;
     }
+    
+    public void AddListener(ActionListener e){
+        jButtonSignUp.addActionListener(e);
+    }
+    
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

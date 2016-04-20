@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -163,7 +165,16 @@ public class RiwayatPesanan extends javax.swing.JFrame {
         this.jTableRiwayatPsn = jTableRiwayatPsn;
     }
     
-
+    public void AddListener (ActionListener e){
+        jButtonCancelPesanan.addActionListener(e);
+    }
+    
+    public void AddMouseListener(MouseListener e) {
+        jTableRiwayatPsn.addMouseListener(e);
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelPesanan;
     private javax.swing.JLabel jLabelRiwayatPesanan;

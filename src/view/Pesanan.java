@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -163,6 +165,15 @@ public class Pesanan extends javax.swing.JFrame {
     public void setjTablePesanan(JTable jTablePesanan) {
         this.jTablePesanan = jTablePesanan;
     }
+    
+    public void AddListener(ActionListener e) {
+        jButtonAmbilPesanan.addActionListener(e);
+    }
+    
+    public void MouseListener (MouseListener e){
+        jTablePesanan.addMouseListener(e);
+    }
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAmbilPesanan;

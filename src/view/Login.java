@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -167,6 +168,9 @@ public class Login extends javax.swing.JFrame {
         this.jTextField2 = jTextField2;
     }
     
+    public void AddListener(ActionListener e){
+        jButtonLogin.addActionListener(e);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonLogin;

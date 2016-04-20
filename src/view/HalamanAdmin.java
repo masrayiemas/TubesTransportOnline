@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -191,7 +193,18 @@ public class HalamanAdmin extends javax.swing.JFrame {
         this.jTable = jTable;
     }
    
-
+    public void AddListener(ActionListener e){
+        jButtonAdd.addActionListener(e);
+        jButtonEdit.addActionListener(e);
+        jButtonDelete.addActionListener(e);
+    }
+    
+    public void MouseListener(MouseListener e){
+        jTable.addMouseListener(e);
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonDelete;

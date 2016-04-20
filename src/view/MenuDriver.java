@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -137,6 +138,11 @@ public class MenuDriver extends javax.swing.JFrame {
 
     public void setjPanel1(JPanel jPanel1) {
         this.jPanel1 = jPanel1;
+    }
+    
+    public void AddListener(ActionListener e){
+        jButtonCekNotif.addActionListener(e);
+        jButtonRiwayatPesanan.addActionListener(e);
     }
     
 
