@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package transportonline.View;
+package view;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,12 +15,12 @@ import javax.swing.JTable;
  *
  * @author Marwah
  */
-public class RiwayatPemesanan extends javax.swing.JFrame {
+public class RiwayatPesanan extends javax.swing.JFrame {
 
     /**
-     * Creates new form RiwayatPemesanan
+     * Creates new form RiwayatPesanan
      */
-    public RiwayatPemesanan() {
+    public RiwayatPesanan() {
         initComponents();
     }
 
@@ -36,14 +36,14 @@ public class RiwayatPemesanan extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabelRiwayatPesanan = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableRiwayat = new javax.swing.JTable();
+        jTableRiwayatPsn = new javax.swing.JTable();
         jButtonCancelPesanan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelRiwayatPesanan.setText("Riwayat Pemesanan");
+        jLabelRiwayatPesanan.setText("Riwayat Pesanan");
 
-        jTableRiwayat.setModel(new javax.swing.table.DefaultTableModel(
+        jTableRiwayatPsn.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -72,38 +72,33 @@ public class RiwayatPemesanan extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableRiwayat);
+        jScrollPane1.setViewportView(jTableRiwayatPsn);
 
         jButtonCancelPesanan.setText("Cancel Pesanan");
-        jButtonCancelPesanan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCancelPesananActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabelRiwayatPesanan)
-                .addGap(150, 150, 150))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(jButtonCancelPesanan)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(154, 154, 154)
+                        .addComponent(jLabelRiwayatPesanan))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(143, 143, 143)
+                        .addComponent(jButtonCancelPesanan)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelRiwayatPesanan)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonCancelPesanan)
@@ -123,10 +118,6 @@ public class RiwayatPemesanan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonCancelPesananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelPesananActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonCancelPesananActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,20 +155,20 @@ public class RiwayatPemesanan extends javax.swing.JFrame {
         this.jScrollPane1 = jScrollPane1;
     }
 
-    public JTable getjTableRiwayat() {
-        return jTableRiwayat;
+    public JTable getjTableRiwayatPsn() {
+        return jTableRiwayatPsn;
     }
 
-    public void setjTableRiwayat(JTable jTableRiwayat) {
-        this.jTableRiwayat = jTableRiwayat;
+    public void setjTableRiwayatPsn(JTable jTableRiwayatPsn) {
+        this.jTableRiwayatPsn = jTableRiwayatPsn;
     }
-   
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelPesanan;
     private javax.swing.JLabel jLabelRiwayatPesanan;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableRiwayat;
+    private javax.swing.JTable jTableRiwayatPsn;
     // End of variables declaration//GEN-END:variables
 }

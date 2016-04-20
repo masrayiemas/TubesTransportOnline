@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package transportonline.Model;
+package config;
 
 /**
  *
  * @author lenovo
  */
-public class Model {
+public class Config {
     
 }

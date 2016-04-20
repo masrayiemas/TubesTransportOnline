@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package transportonline.View;
+package view;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -15,12 +15,12 @@ import javax.swing.JTable;
  *
  * @author Marwah
  */
-public class RiwayatPesanan extends javax.swing.JFrame {
+public class Pesanan extends javax.swing.JFrame {
 
     /**
-     * Creates new form RiwayatPesanan
+     * Creates new form Pesanan
      */
-    public RiwayatPesanan() {
+    public Pesanan() {
         initComponents();
     }
 
@@ -34,47 +34,42 @@ public class RiwayatPesanan extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabelRiwayatPesanan = new javax.swing.JLabel();
+        jLabelPesanan = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableRiwayatPsn = new javax.swing.JTable();
-        jButtonCancelPesanan = new javax.swing.JButton();
+        jTablePesanan = new javax.swing.JTable();
+        jButtonAmbilPesanan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelRiwayatPesanan.setText("Riwayat Pesanan");
+        jLabelPesanan.setText("Pesanan");
 
-        jTableRiwayatPsn.setModel(new javax.swing.table.DefaultTableModel(
+        jTablePesanan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Tanggal", "Jenis Pesanan"
+                "Nama", "JenKel", "No Telp", "Lokasi", "Tujuan", "Barang"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableRiwayatPsn);
+        jScrollPane1.setViewportView(jTablePesanan);
 
-        jButtonCancelPesanan.setText("Cancel Pesanan");
+        jButtonAmbilPesanan.setText("Ambil Pesanan");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,26 +78,29 @@ public class RiwayatPesanan extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(154, 154, 154)
-                        .addComponent(jLabelRiwayatPesanan))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(143, 143, 143)
-                        .addComponent(jButtonCancelPesanan)))
-                .addContainerGap(15, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(144, 144, 144)
+                                .addComponent(jButtonAmbilPesanan))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(173, 173, 173)
+                                .addComponent(jLabelPesanan)))
+                        .addGap(0, 145, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelRiwayatPesanan)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelPesanan)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonCancelPesanan)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(jButtonAmbilPesanan)
+                .addGap(58, 58, 58))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -123,20 +121,20 @@ public class RiwayatPesanan extends javax.swing.JFrame {
      * @param args the command line arguments
      */
 
-    public JButton getjButtonCancelPesanan() {
-        return jButtonCancelPesanan;
+    public JButton getjButtonAmbilPesanan() {
+        return jButtonAmbilPesanan;
     }
 
-    public void setjButtonCancelPesanan(JButton jButtonCancelPesanan) {
-        this.jButtonCancelPesanan = jButtonCancelPesanan;
+    public void setjButtonAmbilPesanan(JButton jButtonAmbilPesanan) {
+        this.jButtonAmbilPesanan = jButtonAmbilPesanan;
     }
 
-    public JLabel getjLabelRiwayatPesanan() {
-        return jLabelRiwayatPesanan;
+    public JLabel getjLabelPesanan() {
+        return jLabelPesanan;
     }
 
-    public void setjLabelRiwayatPesanan(JLabel jLabelRiwayatPesanan) {
-        this.jLabelRiwayatPesanan = jLabelRiwayatPesanan;
+    public void setjLabelPesanan(JLabel jLabelPesanan) {
+        this.jLabelPesanan = jLabelPesanan;
     }
 
     public JPanel getjPanel1() {
@@ -155,20 +153,22 @@ public class RiwayatPesanan extends javax.swing.JFrame {
         this.jScrollPane1 = jScrollPane1;
     }
 
-    public JTable getjTableRiwayatPsn() {
-        return jTableRiwayatPsn;
+    public JTable getjTablePesanan() {
+        return jTablePesanan;
     }
 
-    public void setjTableRiwayatPsn(JTable jTableRiwayatPsn) {
-        this.jTableRiwayatPsn = jTableRiwayatPsn;
+    /**
+     * @param args the command line arguments
+     */
+    public void setjTablePesanan(JTable jTablePesanan) {
+        this.jTablePesanan = jTablePesanan;
     }
     
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCancelPesanan;
-    private javax.swing.JLabel jLabelRiwayatPesanan;
+    private javax.swing.JButton jButtonAmbilPesanan;
+    private javax.swing.JLabel jLabelPesanan;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableRiwayatPsn;
+    private javax.swing.JTable jTablePesanan;
     // End of variables declaration//GEN-END:variables
 }
