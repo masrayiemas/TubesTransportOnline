@@ -21,7 +21,7 @@ public class Database {
     
      public void connect()throws SQLException{
         try {
-            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_transportonline/", "root", "");
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_transportonline", "root", "");
             st = (Statement) cn.createStatement();
             System.out.println("sudah connect");
         } catch (Exception e) {
@@ -37,7 +37,6 @@ public class Database {
             e.printStackTrace();
         }
     }
-    
   
     public boolean manipulasiData(String query)throws SQLException{
         try {

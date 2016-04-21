@@ -5,10 +5,14 @@
  */
 package model;
 
+import controller.Controller;
+
 /**
  *
- * @author lenovo
+ * @author Rayiemas Manggala P
  */
-public class Model {
-    
+public class MainDriver {
+    public static void main(String[] args) {
+        Controller c = new Controller();
+    }
 }

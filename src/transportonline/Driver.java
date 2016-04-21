@@ -10,8 +10,8 @@ package transportonline;
  * @author lenovo
  */
 public class Driver {
-   public static void main(String[] args){
-       ConsoleApp c = new ConsoleApp();
-        c.mainMenu(); 
-   }
+//   public static void main(String[] args){
+//       ConsoleApp c = new ConsoleApp();
+//        c.mainMenu(); 
+//   }
 } 
