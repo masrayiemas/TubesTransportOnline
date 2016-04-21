@@ -212,4 +212,71 @@ public class Application {
             return false;
         }
     }
+    
+    public boolean updatePelanggan(Pelanggan p) throws SQLException {
+        db.connect();
+        String query = "update t_pelanggan set nama = '" +p.getNama()+"' ,'" 
+                        +"set jenis_kelamin = '" +p.getJenKel()+"' ,'"
+                        + "set no_telp = '"+p.getNoTelp()+"' ,'" 
+                        + "where idPelanggan = '" +p.getIdPelanggan()+ "')";
+        if (db.manipulasiData(query)) {
+            db.disconnect();
+            return true;
+        } else {
+            db.disconnect();
+            return false;
+        }
+                 
+    }
+    
+    public boolean updatePengemudi(Pengemudi d) throws SQLException {
+        db.connect();
+        String query = "update t_pengemudi set nama = '" +d.getNama()+"' ,'" 
+                        + "set jenis_kelamin = '" +d.getJenKel()+"' ,'"
+                        + "set no_telp = '"+d.getNoTelp()+"' ,'" 
+                        + "where idPelanggan = '" +d.getIdPengemudi()+ "')";
+        if (db.manipulasiData(query)) {
+            db.disconnect();
+            return true;
+        } else {
+            db.disconnect();
+            return false;
+        }     
+                 
+    }
+    public boolean updatePesanan(Pesanan t, String idPelanggan) throws SQLException {
+        db.connect();
+        String query = "update t_pesanan set jenis_pesanan = '" +t.getJenisPesanan() + "', '"
+                + "set alamat = '" + t.getAlamat()
+                + "', '" +"set tujuan ='" +t.getTujuan() + "', " 
+                + "set jarak = '" + t.getJarak() + ", "
+                + "set tarif = '" +t.getTarif() + ", " +"set status = '"+ t.getStatus() 
+                + "where id_transaksi = '" +t.getIdTrans()+ "')";
+        if (db.manipulasiData(query)) {
+            db.disconnect();
+            return true;
+        } else {
+            db.disconnect();
+            return false;
+        }     
+    }
+    
+    public boolean updatePesanan(Kurir k, String idPelanggan) throws SQLException {
+        db.connect();
+        String query = "update t_pesanan set jenis_pesanan = '" +k.getJenisPesanan() + "', '"
+                + "set alamat = '" + k.getAlamat()
+                + "', '" +"set tujuan ='" +k.getTujuan() + "', '" 
+                + "set jarak = '" + k.getJarak() + ", "
+                + "set tarif = '" +k.getTarif() + ", " +"set status = '"+ k.getStatus() +"' ,'"
+                + "set nama_barang = '"+k.getNamaBarang()+ "' ,'"
+                + "where id_transaksi = '" +k.getIdTrans()+ "')";
+        if (db.manipulasiData(query)) {
+            db.disconnect();
+            return true;
+        } else {
+            db.disconnect();
+            return false;
+        }     
+                
+    }
 }
