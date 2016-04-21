@@ -53,13 +53,20 @@ public class Pelanggan extends Orang implements Serializable {
     }
 
     public Pesanan createPesanan(String jenisPesanan, String alamat,
-            String tujuan, int jarak, int tarif) {
+                                String tujuan, int jarak, int tarif) {
         Pesanan p = null;
         pesanan[jmlPesanan] = new Pesanan(jenisPesanan, alamat,
                 tujuan, jarak, tarif, super.getJenKel());
         p = pesanan[jmlPesanan];
         jmlPesanan++;
         return p;
+    }
+    
+    public void createPesanan(String idTrans, String jenisPesanan, String alamat , String tujuan, int tarif, 
+                    int jarak, boolean status, String jk){
+        pesanan[jmlPesanan] = new Pesanan(idTrans, jenisPesanan , alamat, tujuan, 
+                                    tarif, jarak, status, jk);
+        jmlPesanan++;
     }
 
     public void createPesananKurir(String jenisPesanan, String alamat,

@@ -54,7 +54,6 @@ public class Database {
         }
     }
     
-    
     public ResultSet getData(String query)
     {
         try {

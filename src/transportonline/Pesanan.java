@@ -45,6 +45,20 @@ public class Pesanan {
 
     }
 
+    public Pesanan(String idTrans, String jenisPesanan, String alamat , String tujuan, int tarif, 
+                    int jarak, boolean status, String jk) {
+        this.idTrans = idTrans;
+        this.jenisPesanan = jenisPesanan;
+        this.tujuan = tujuan;
+        this.tarif = tarif;
+        this.jarak = jarak;
+        this.alamat = alamat;
+        this.status = status;
+        this.jk = jk;
+    }
+    
+    
+
     public void setIdTrans(String idTrans) {
         this.idTrans = idTrans;
     }

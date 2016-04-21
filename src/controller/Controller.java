@@ -42,12 +42,14 @@ public class Controller extends MouseAdapter implements ActionListener {
         login = new Login();
         pesan = new Pesan();
         menupel = new MenuPelanggan();
+        app.loadData();
         index.AddListener(this);
         pesan.AddListener(this);
         signUp.AddListener(this);
         menupel.AddListener(this);
         login.addListener(this);
         index.setVisible(true);
+        
     }
 
     @Override
@@ -107,7 +109,7 @@ public class Controller extends MouseAdapter implements ActionListener {
             }
         }
 
-        //Pesan
+        //PesanTransport
         if (src.equals(pesan.getjButtonPesan())) {
             try {
                 Pelanggan p = new Pelanggan(UserSession.getId_ss(),

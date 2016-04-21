@@ -35,6 +35,13 @@ public class Pengemudi extends Orang implements Serializable{
       }
     }
 
+    public Pengemudi(String idPengemudi, String nama, String jenkel, String noTelp) {
+        super(nama, jenkel, noTelp);
+        this.idPengemudi = idPengemudi;
+        pesanan = new Pesanan[100];
+        jmlPesanan = 0;
+    }
+    
     public String getIdPengemudi() {
         return idPengemudi;
     }
@@ -42,7 +49,12 @@ public class Pengemudi extends Orang implements Serializable{
     public void setIdPengemudi(String idPengemudi) {
         this.idPengemudi = idPengemudi;
     }
-
+    
+    public void loadPesanan(Pesanan p){
+        pesanan[jmlPesanan] = p;
+        jmlPesanan++;
+    }
+    
     public void addPesanan(Pesanan p) {
         if (p.getJenisPesanan().equals("Kurir")) {
             pesanan[jmlPesanan] = p;
