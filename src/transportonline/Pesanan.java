@@ -28,9 +28,13 @@ public class Pesanan {
     protected static int countTrans;
 
     public Pesanan(String jenisPesanan, String alamat, String tujuan,
-                    int tarif, int jarak, String jk) {
+                    int jarak, int tarif, String jk) {
         countTrans++;
-        this.setIdTrans(makeIdTrans());
+        try {
+            this.setIdTrans(makeIdTrans());
+        } catch (SQLException ex) {
+            System.out.println("gagal");
+        }
         this.jenisPesanan = jenisPesanan;
         this.tujuan = tujuan;
         this.tarif = tarif;
@@ -107,7 +111,7 @@ public class Pesanan {
         this.jk = jk;
     }
 
-    public String makeIdTrans() {
+    public String makeIdTrans() throws SQLException {
         Database db = new Database();
         try {
             db.connect();
@@ -133,6 +137,9 @@ public class Pesanan {
         } else {
             id = id + "00" + data;
         }
+        String queryupdate = "update counter set countpesanan = " + data
+                + " where no = 1";
+        db.manipulasiData(queryupdate);
         return id;
     }
     

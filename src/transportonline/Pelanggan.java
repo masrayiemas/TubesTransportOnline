@@ -33,6 +33,16 @@ public class Pelanggan extends Orang implements Serializable {
             System.out.println("Make Id Failed.");
         }
     }
+    
+    public Pelanggan(String nama, String noTelp) {
+        super(nama, "", noTelp);
+    }
+    
+    public Pelanggan(String idPelanggan, String nama, String jenKel, String noTelp) {
+        super(nama, jenKel, noTelp);
+        pesanan = new Pesanan[100];
+        this.idPelanggan = idPelanggan;
+    }
 
     public String getIdPelanggan() {
         return idPelanggan;
@@ -42,11 +52,14 @@ public class Pelanggan extends Orang implements Serializable {
         this.idPelanggan = idPelanggan;
     }
 
-    public void createPesanan(String jenisPesanan, String alamat,
+    public Pesanan createPesanan(String jenisPesanan, String alamat,
             String tujuan, int jarak, int tarif) {
+        Pesanan p = null;
         pesanan[jmlPesanan] = new Pesanan(jenisPesanan, alamat,
                 tujuan, jarak, tarif, super.getJenKel());
+        p = pesanan[jmlPesanan];
         jmlPesanan++;
+        return p;
     }
 
     public void createPesananKurir(String jenisPesanan, String alamat,

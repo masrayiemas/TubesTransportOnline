@@ -223,8 +223,6 @@ public class SignUp extends javax.swing.JFrame {
         this.txtNotelp = txtNotelp;
     }
 
-    
-    
     public void AddListener(ActionListener e){
         jButtonSignUp.addActionListener(e);
         jButtonBack.addActionListener(e);

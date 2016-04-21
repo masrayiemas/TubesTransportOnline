@@ -17,12 +17,12 @@ import javax.swing.JTable;
  *
  * @author Marwah
  */
-public class Pesanan extends javax.swing.JFrame {
+public class PesananView extends javax.swing.JFrame {
 
     /**
      * Creates new form Pesanan
      */
-    public Pesanan() {
+    public PesananView() {
         initComponents();
     }
 
@@ -43,7 +43,7 @@ public class Pesanan extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabelPesanan.setText("Pesanan");
+        jLabelPesanan.setText("Pesanan Tersedia");
 
         jTablePesanan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -90,7 +90,7 @@ public class Pesanan extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(173, 173, 173)
                                 .addComponent(jLabelPesanan)))
-                        .addGap(0, 145, Short.MAX_VALUE)))
+                        .addGap(0, 132, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(

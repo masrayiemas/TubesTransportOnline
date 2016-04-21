@@ -8,6 +8,7 @@ package view;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -321,7 +322,13 @@ public class Pesan extends javax.swing.JFrame {
     public void AddListener(ActionListener e){
         jButtonPesan.addActionListener(e);
     }
-
+    public void showMessage(String message){
+        JOptionPane.showMessageDialog(null, message);
+    }
+    
+    public void showMessage(String message, String title, int type){
+        JOptionPane.showMessageDialog(null, message, title, type);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonPesan;
     private javax.swing.JLabel jLabel1;

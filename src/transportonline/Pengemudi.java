@@ -91,7 +91,7 @@ public class Pengemudi extends Orang implements Serializable{
         ResultSet hasil = db.getData(query);
         try {
             if (hasil.next()) {
-                data = hasil.getInt("countpelanggan");
+                datape = hasil.getInt("countpelanggan");
             }
         } catch (Exception e) {
             e.printStackTrace();
