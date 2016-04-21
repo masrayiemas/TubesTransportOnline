@@ -57,7 +57,6 @@ public class Database {
     
     public ResultSet getData(String query)
     {
-        
         try {
             return st.executeQuery(query);
         } catch (Exception e) {

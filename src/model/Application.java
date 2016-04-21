@@ -95,6 +95,7 @@ public class Application {
         String query ="delete from Pelanggan where idPelanggan = '"+pe.getIdPelanggan()+"'";
         if (db.manipulasiData(query)){
             db.disconnect();
+            return true;
         }else{
             db.disconnect();
             return false;
@@ -105,6 +106,7 @@ public class Application {
         String query ="delete from Pengemudi where idPengemudi= '"+pm.getIdPengemudi()+"'";
         if(db.manipulasiData(query)){
             db.disconnect();
+            return true;
         }else{
             db.disconnect();
             return false;
@@ -115,6 +117,7 @@ public class Application {
         String query ="delete from Pesanan where idTrans = '"+ps.getIdTrans()+"'";
         if(db.manipulasiData(query)){
             db.disconnect();
+            return true;
         }else{
             db.disconnect();
             return false;

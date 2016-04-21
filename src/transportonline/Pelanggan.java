@@ -5,13 +5,18 @@
  */
 package transportonline;
 
+import config.Database;
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Rayiemas Manggala P
  */
-public class Pelanggan extends Orang implements Serializable{
+public class Pelanggan extends Orang implements Serializable {
 
     private Pesanan[] pesanan;
     private String idPelanggan;
@@ -22,7 +27,11 @@ public class Pelanggan extends Orang implements Serializable{
         super(nama, jenKel, noTelp);
         pesanan = new Pesanan[100];
         countPel++;
-        this.setIdPelanggan(makeIdPelanggan());
+        try {
+            this.setIdPelanggan(makeIdPelanggan());
+        } catch (SQLException ex) {
+            System.out.println("Make Id Failed.");
+        }
     }
 
     public String getIdPelanggan() {
@@ -86,16 +95,33 @@ public class Pelanggan extends Orang implements Serializable{
         return jmlPesanan;
     }
 
-    public String makeIdPelanggan() {
-        String id = "P";
-        if (Pelanggan.countPel / 10 > 9) {
-            id = id + Pelanggan.countPel;
-        } else if (Pelanggan.countPel / 10 > 0) {
-            id = id + "0" + Pelanggan.countPel;
-        } else {
-            id = id + "00" + Pelanggan.countPel;
+    public String makeIdPelanggan() throws SQLException {
+        Database db = new Database();
+        db.connect();
+        int data = 0;
+        String query = "select * from counter";
+        ResultSet hasil = db.getData(query);
+        try {
+            if (hasil.next()) {
+                data = hasil.getInt("countpelanggan");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
+        data++;
+        String id = "P";
+        if (data / 10 > 9) {
+            id = id + data;
+        } else if (data / 10 > 0) {
+            id = id + "0" + data;
+        } else {
+            id = id + "00" + data;
+        }
+        String queryupdate = "update counter set countpelanggan = " + data
+                + " where no = 1";
+        db.manipulasiData(queryupdate);
         return id;
     }
-    
+
 }

@@ -27,6 +27,7 @@ public class Controller extends MouseAdapter implements ActionListener{
     private Application app;
     private SignUpLogin index;
     private SignUp signUp;
+    private String idPelangganTemp;
     
     public Controller(){
         app = new Application();
@@ -40,6 +41,7 @@ public class Controller extends MouseAdapter implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
+        
         //Index
         if(src.equals(index.getjButtonSignUp())){
             index.setVisible(false);

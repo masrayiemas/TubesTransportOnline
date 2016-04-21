@@ -5,7 +5,12 @@
  */
 package transportonline;
 
+import config.Database;
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,14 +21,18 @@ public class Pengemudi extends Orang implements Serializable{
   private Pesanan[] pesanan;
     private String idPengemudi;
     private int jmlPesanan;
-    private static int countPeng;
+    private static int data;
 
     public Pengemudi(String nama, String jenKel, String noTelp) {
         super(nama, jenKel, noTelp);
         pesanan = new Pesanan[100];
         jmlPesanan = 0;
-        countPeng++;
-        this.setIdPengemudi(makeIdPengemudi());
+        data++;
+      try {
+          this.setIdPengemudi(makeIdPengemudi());
+      } catch (SQLException ex) {
+          System.out.println("Make Id Failed");
+      }
     }
 
     public String getIdPengemudi() {
@@ -74,15 +83,31 @@ public class Pengemudi extends Orang implements Serializable{
         return jmlPesanan;
     }
     
-    public String makeIdPengemudi() {
-        String id = "D";
-        if (Pengemudi.countPeng / 10 > 9) {
-            id = id + Pengemudi.countPeng;
-        } else if (Pengemudi.countPeng / 10 > 0) {
-            id = id + "0" + Pengemudi.countPeng;
-        } else {
-            id = id + "00" + Pengemudi.countPeng;
+    public String makeIdPengemudi() throws SQLException {
+        Database db = new Database();
+        db.connect();
+        int datape = 0;
+        String query = "select * from counter";
+        ResultSet hasil = db.getData(query);
+        try {
+            if (hasil.next()) {
+                data = hasil.getInt("countpelanggan");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        datape++;
+        String id = "D";
+        if (datape / 10 > 9) {
+            id = id + datape;
+        } else if (datape / 10 > 0) {
+            id = id + "0" + datape;
+        } else {
+            id = id + "00" + datape;
+        }
+        String queryupdate = "update counter set countpengemudi = " + data
+                + " where no = 1";
+        db.manipulasiData(queryupdate);
         return id;
     }
 }

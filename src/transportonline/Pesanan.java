@@ -5,6 +5,12 @@
  */
 package transportonline;
 
+import config.Database;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Rayiemas Manggala P
@@ -102,13 +108,30 @@ public class Pesanan {
     }
 
     public String makeIdTrans() {
+        Database db = new Database();
+        try {
+            db.connect();
+        } catch (SQLException ex) {
+            System.out.println("Gagal Konek");
+        }
+        int data = 0;
+        String query = "select * from counter";
+        ResultSet hasil = db.getData(query);
+        try {
+            if (hasil.next()) {
+                data = hasil.getInt("countpesanan");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        data++;
         String id = "T";
-        if (Pesanan.countTrans / 10 > 9) {
-            id = id + Pesanan.countTrans;
-        } else if (Pesanan.countTrans / 10 > 0) {
-            id = id + "0" + Pesanan.countTrans;
+        if (data / 10 > 9) {
+            id = id + data;
+        } else if (data / 10 > 0) {
+            id = id + "0" + data;
         } else {
-            id = id + "00" + Pesanan.countTrans;
+            id = id + "00" + data;
         }
         return id;
     }
