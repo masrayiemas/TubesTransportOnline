@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database;
+package config;
 
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,7 +21,7 @@ public class Database {
     
      public void connect()throws SQLException{
         try {
-            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/transport online/", "myproject", "transport");
+            cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/db_transportonline/", "root", "");
             st = (Statement) cn.createStatement();
             System.out.println("sudah connect");
         } catch (Exception e) {

@@ -5,11 +5,13 @@
  */
 package transportonline;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rayiemas Manggala P
  */
-public class Pelanggan extends Orang {
+public class Pelanggan extends Orang implements Serializable{
 
     private Pesanan[] pesanan;
     private String idPelanggan;

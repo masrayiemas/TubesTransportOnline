@@ -5,11 +5,13 @@
  */
 package transportonline;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Rayiemas Manggala P
  */
-public class Kurir extends Pesanan{
+public class Kurir extends Pesanan implements Serializable{
     private String namaBarang;
     
     public Kurir(String jenisPesanan, String alamat, String tujuan, int tarif, 

@@ -22,7 +22,7 @@ public class Pesanan {
     protected static int countTrans;
 
     public Pesanan(String jenisPesanan, String alamat, String tujuan,
-            int tarif, int jarak, String jk) {
+                    int tarif, int jarak, String jk) {
         countTrans++;
         this.setIdTrans(makeIdTrans());
         this.jenisPesanan = jenisPesanan;
