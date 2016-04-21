@@ -10,8 +10,6 @@ import config.UserSession;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import transportonline.Kurir;
 import transportonline.Pelanggan;
 import transportonline.Pengemudi;
@@ -23,9 +21,9 @@ import transportonline.Pesanan;
  */
 public class Application {
 
-    private ArrayList<Pelanggan> pelanggan = new ArrayList<>();
-    private ArrayList<Pengemudi> pengemudi = new ArrayList<>();
-    private ArrayList<Pesanan> pesanan = new ArrayList<>();
+    private ArrayList<Pelanggan> pelanggan;
+    private ArrayList<Pengemudi> pengemudi;
+    private ArrayList<Pesanan> pesanan;
     private Database db;
 
     public Application() {
@@ -33,6 +31,9 @@ public class Application {
     }
 
     public void loadData() {
+        pelanggan = new ArrayList<>();
+        pengemudi = new ArrayList<>();
+        pesanan = new ArrayList<>();
         ResultSet hslPelanggan = null;
         ResultSet hslPengemudi = null;
         ResultSet hslPesanan = null;
@@ -55,11 +56,11 @@ public class Application {
                         + "'" + x.getIdPelanggan() + "'";
                 hslPesanan = db.getData(qPesanan);
                 while (hslPesanan.next()) {
-                    p.createPesanan(hslPesanan.getString(1), hslPesanan.getString(2),
+                    x.createPesanan(hslPesanan.getString(1), hslPesanan.getString(2),
                             hslPesanan.getString(3), hslPesanan.getString(4),
                             hslPesanan.getInt(5), hslPesanan.getInt(7),
                             hslPesanan.getBoolean(8), p.getJenKel());
-                    pesanan.add(p.getPesanan(hslPesanan.getString(1)));
+                    pesanan.add(x.getPesanan(hslPesanan.getString(1)));
                 }
             }
             
@@ -76,20 +77,15 @@ public class Application {
             }
 
             for (Pengemudi x : pengemudi) {
-                //System.out.println(x.getIdPengemudi());
                 String qPesanan = "select * from t_pesanan where id_pengemudi= "
                         + "'" + x.getIdPengemudi() + "'";
                 hslPesanan = db.getData(qPesanan);
-                System.out.print(x.getIdPengemudi() + " ");
                 while (hslPesanan.next()) {
                     for (Pesanan y : pesanan) {
-                        //System.out.println(y.getIdTrans());
-                        //System.out.println(hslPesanan.getString(1));
                         if (y.getIdTrans().equals(hslPesanan.getString(1))) {
                             x.loadPesanan(y);
                         }
                     }
-                    System.out.println(x.getPesanan(0).getIdTrans());
                 }
             }
 
@@ -193,6 +189,15 @@ public class Application {
         }
     }
 
+    public Pelanggan loginPelanggan(String nama, String no_telp){
+        for(Pelanggan p : pelanggan){
+            if(p.getNama().equals(nama) && p.getNoTelp().equals(no_telp)){
+                return p;
+            }
+        }
+        return null;
+    }
+    
     public boolean cekLoginPelanggan(Pelanggan p) throws SQLException {
         db.connect();
         String query = "select * from t_pelanggan where nama_pelanggan = '"
@@ -212,13 +217,13 @@ public class Application {
             return false;
         }
     }
-    
+
     public boolean updatePelanggan(Pelanggan p) throws SQLException {
         db.connect();
-        String query = "update t_pelanggan set nama = '" +p.getNama()+"' ,'" 
-                        +"set jenis_kelamin = '" +p.getJenKel()+"' ,'"
-                        + "set no_telp = '"+p.getNoTelp()+"' ,'" 
-                        + "where idPelanggan = '" +p.getIdPelanggan()+ "')";
+        String query = "update t_pelanggan set nama = '" + p.getNama() + "' ,'"
+                + "set jenis_kelamin = '" + p.getJenKel() + "' ,'"
+                + "set no_telp = '" + p.getNoTelp() + "' ,'"
+                + "where idPelanggan = '" + p.getIdPelanggan() + "')";
         if (db.manipulasiData(query)) {
             db.disconnect();
             return true;
@@ -226,57 +231,58 @@ public class Application {
             db.disconnect();
             return false;
         }
-                 
+
     }
-    
+
     public boolean updatePengemudi(Pengemudi d) throws SQLException {
         db.connect();
-        String query = "update t_pengemudi set nama = '" +d.getNama()+"' ,'" 
-                        + "set jenis_kelamin = '" +d.getJenKel()+"' ,'"
-                        + "set no_telp = '"+d.getNoTelp()+"' ,'" 
-                        + "where idPelanggan = '" +d.getIdPengemudi()+ "')";
+        String query = "update t_pengemudi set nama = '" + d.getNama() + "' ,'"
+                + "set jenis_kelamin = '" + d.getJenKel() + "' ,'"
+                + "set no_telp = '" + d.getNoTelp() + "' ,'"
+                + "where idPelanggan = '" + d.getIdPengemudi() + "')";
         if (db.manipulasiData(query)) {
             db.disconnect();
             return true;
         } else {
             db.disconnect();
             return false;
-        }     
-                 
+        }
+
     }
+
     public boolean updatePesanan(Pesanan t, String idPelanggan) throws SQLException {
         db.connect();
-        String query = "update t_pesanan set jenis_pesanan = '" +t.getJenisPesanan() + "', '"
+        String query = "update t_pesanan set jenis_pesanan = '" + t.getJenisPesanan() + "', '"
                 + "set alamat = '" + t.getAlamat()
-                + "', '" +"set tujuan ='" +t.getTujuan() + "', " 
+                + "', '" + "set tujuan ='" + t.getTujuan() + "', "
                 + "set jarak = '" + t.getJarak() + ", "
-                + "set tarif = '" +t.getTarif() + ", " +"set status = '"+ t.getStatus() 
-                + "where id_transaksi = '" +t.getIdTrans()+ "')";
+                + "set tarif = '" + t.getTarif() + ", " + "set status = '" + t.getStatus()
+                + "where id_transaksi = '" + t.getIdTrans() + "')";
         if (db.manipulasiData(query)) {
             db.disconnect();
             return true;
         } else {
             db.disconnect();
             return false;
-        }     
+        }
     }
-    
+
     public boolean updatePesanan(Kurir k, String idPelanggan) throws SQLException {
         db.connect();
-        String query = "update t_pesanan set jenis_pesanan = '" +k.getJenisPesanan() + "', '"
+        String query = "update t_pesanan set jenis_pesanan = '" + k.getJenisPesanan() + "', '"
                 + "set alamat = '" + k.getAlamat()
-                + "', '" +"set tujuan ='" +k.getTujuan() + "', '" 
+                + "', '" + "set tujuan ='" + k.getTujuan() + "', '"
                 + "set jarak = '" + k.getJarak() + ", "
-                + "set tarif = '" +k.getTarif() + ", " +"set status = '"+ k.getStatus() +"' ,'"
-                + "set nama_barang = '"+k.getNamaBarang()+ "' ,'"
-                + "where id_transaksi = '" +k.getIdTrans()+ "')";
+                + "set tarif = '" + k.getTarif() + ", " + "set status = '" + k.getStatus() + "' ,'"
+                + "set nama_barang = '" + k.getNamaBarang() + "' ,'"
+                + "where id_transaksi = '" + k.getIdTrans() + "')";
         if (db.manipulasiData(query)) {
             db.disconnect();
             return true;
         } else {
             db.disconnect();
             return false;
-        }     
-                
+        }
+
     }
 }

@@ -34,6 +34,7 @@ public class Controller extends MouseAdapter implements ActionListener {
     private MenuPelanggan menupel;
     private Pesan pesan;
     private String idPelangganTemp;
+    private Pelanggan plgSess;
 
     public Controller() {
         app = new Application();
@@ -49,7 +50,6 @@ public class Controller extends MouseAdapter implements ActionListener {
         menupel.AddListener(this);
         login.addListener(this);
         index.setVisible(true);
-        
     }
 
     @Override
@@ -74,6 +74,7 @@ public class Controller extends MouseAdapter implements ActionListener {
                         signUp.getTxtNotelp().getText());
                 if (app.insertPelanggan(p)) {
                     signUp.showMessage("Insert Berhasil !!");
+                    app.loadData();
                 } else {
                     signUp.showMessage("Insert gagal coy !!!", "ERROR INSERT",
                             JOptionPane.ERROR_MESSAGE);
@@ -88,10 +89,13 @@ public class Controller extends MouseAdapter implements ActionListener {
             try {
                 String nama = login.getTxtNama().getText();
                 String notelp = login.getTxtNotelp().getText();
-                Pelanggan p = new Pelanggan(nama, notelp);
-                if (app.cekLoginPelanggan(p)) {
+                plgSess = app.loginPelanggan(nama, notelp);
+                if (plgSess!=null) {
+                    login.showMessage("Login Sukses");
                     login.setVisible(false);
                     menupel.setVisible(true);
+                } else {
+                    login.showMessage("Login Gagal");
                 }
             } catch (Exception ea) {
                 ea.printStackTrace();
@@ -102,6 +106,9 @@ public class Controller extends MouseAdapter implements ActionListener {
         if (src.equals(menupel.getjButtonTransportasi())) {
             try {
                 pesan.setVisible(true);
+                for(int i = 0; i < plgSess.getJmlPesanan(); i++){
+                        System.out.println(plgSess.getPesanan(i).getIdTrans());
+                    }
                 menupel.setVisible(false);
             } catch (Exception ae) {
                 pesan.showMessage("Gagal");
@@ -112,16 +119,15 @@ public class Controller extends MouseAdapter implements ActionListener {
         //PesanTransport
         if (src.equals(pesan.getjButtonPesan())) {
             try {
-                Pelanggan p = new Pelanggan(UserSession.getId_ss(),
-                        UserSession.getNama_ss(),
-                        UserSession.getJenkel_ss(),
-                        UserSession.getNotelp_ss());
-                Pesanan ps = p.createPesanan("Transport", pesan.getjTextFieldLokasi().getText(),
+                   Pesanan p = plgSess.createPesanan("Transport", pesan.getjTextFieldLokasi().getText(),
                         pesan.getjTextFieldTujuan().getText(),
                         Integer.parseInt(pesan.getjTextFieldJarak().getText()),
                         Integer.parseInt(pesan.getjTextFieldTarif().getText()));
-                if (app.insertPesanan(ps, p.getIdPelanggan())) {
+                if (app.insertPesanan(p, plgSess.getIdPelanggan())) {
                     pesan.showMessage("Pesanan Sukses");
+                    System.out.println("");
+                    app.loadData();
+                    
                     menupel.setVisible(true);
                     pesan.setVisible(false);
                 } else {
