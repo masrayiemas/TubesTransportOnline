@@ -90,4 +90,34 @@ public class Application {
             return false;
         }
     }
-}
+    
+    public boolean deletePelanggan(Pelanggan pe) throws SQLException{
+        String query ="delete from Pelanggan where idPelanggan = '"+pe.getIdPelanggan()+"'";
+        if (db.manipulasiData(query)){
+            db.disconnect();
+        }else{
+            db.disconnect();
+            return false;
+        }
+    }
+    
+    public boolean deletePengemudi(Pengemudi pm) throws SQLException{
+        String query ="delete from Pengemudi where idPengemudi= '"+pm.getIdPengemudi()+"'";
+        if(db.manipulasiData(query)){
+            db.disconnect();
+        }else{
+            db.disconnect();
+            return false;
+            }
+        }
+    
+    public boolean deletePesanan(Pesanan ps)throws SQLException{
+        String query ="delete from Pesanan where idTrans = '"+ps.getIdTrans()+"'";
+        if(db.manipulasiData(query)){
+            db.disconnect();
+        }else{
+            db.disconnect();
+            return false;
+            }
+        }
+    }
