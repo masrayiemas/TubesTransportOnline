@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,12 +21,21 @@ import javax.swing.JTextField;
 public class Pesan extends javax.swing.JFrame {
 
     /**
-     * Creates new form Pesan
+     * Creates new form 
      */
     public Pesan() {
         initComponents();
+        setFrameToCenter();
     }
-
+    
+    public void setFrameToCenter() {
+        Dimension scrnSize = Toolkit.getDefaultToolkit( ).getScreenSize();
+        int w = getSize( ).width+900;
+        int h = getSize( ).height;
+        int x = ((scrnSize.width-w));
+        int y = ((scrnSize.height-h+10) / 2);
+        setLocation(x, y);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

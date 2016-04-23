@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,6 +23,16 @@ public class MenuPelanggan extends javax.swing.JFrame {
      */
     public MenuPelanggan() {
         initComponents();
+        setFrameToCenter();
+    }
+    
+    public void setFrameToCenter() {
+        Dimension scrnSize = Toolkit.getDefaultToolkit( ).getScreenSize();
+        int w = getSize( ).width+900;
+        int h = getSize( ).height;
+        int x = ((scrnSize.width-w));
+        int y = ((scrnSize.height-h+10) / 2);
+        setLocation(x, y);
     }
 
     /**

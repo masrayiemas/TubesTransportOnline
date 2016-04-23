@@ -13,9 +13,16 @@ import java.io.Serializable;
  */
 public class Kurir extends Pesanan implements Serializable{
     private String namaBarang;
+
+    public Kurir(String idTrans, String jenisPesanan, 
+            String alamat, String tujuan, int jarak,
+            String namaBarang, int tarif, boolean status, String jk) {
+        super(idTrans, jenisPesanan, alamat, tujuan, tarif, jarak, status, jk);
+        this.namaBarang = namaBarang;
+    }
     
-    public Kurir(String jenisPesanan, String alamat, String tujuan, int tarif, 
-            int jarak, String namaBarang, String jk) {
+    public Kurir(String jenisPesanan, String alamat, String tujuan, int jarak, 
+                String namaBarang, int tarif,  String jk) {
         super(jenisPesanan, alamat, tujuan, tarif, jarak, jk);
         this.namaBarang=namaBarang;
     }

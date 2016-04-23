@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -14,13 +16,23 @@ import javax.swing.JPanel;
  *
  * @author Marwah
  */
-public class MenuDriver extends javax.swing.JFrame {
+public class MenuPengemudi extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuDriver
      */
-    public MenuDriver() {
+    public MenuPengemudi() {
         initComponents();
+        setFrameToCenter();
+    }
+
+    public void setFrameToCenter() {
+        Dimension scrnSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int w = getSize().width + 90;
+        int h = getSize().height;
+        int x = ((scrnSize.width - w));
+        int y = ((scrnSize.height - h + 10) / 2);
+        setLocation(x, y);
     }
 
     /**
@@ -33,14 +45,14 @@ public class MenuDriver extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButtonCekNotif = new javax.swing.JButton();
+        jButtonAmbilPesanan = new javax.swing.JButton();
         jButtonRiwayatPesanan = new javax.swing.JButton();
         jLabelMenuDriver = new javax.swing.JLabel();
         jLabelDriver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButtonCekNotif.setText("Cek Notifikasi");
+        jButtonAmbilPesanan.setText("Ambil Pesanan");
 
         jButtonRiwayatPesanan.setText("Riwayat Pesanan");
 
@@ -54,7 +66,7 @@ public class MenuDriver extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(jButtonCekNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonAmbilPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addComponent(jButtonRiwayatPesanan)
                 .addGap(56, 56, 56))
@@ -77,7 +89,7 @@ public class MenuDriver extends javax.swing.JFrame {
                 .addComponent(jLabelDriver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCekNotif, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonAmbilPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonRiwayatPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(80, 80, 80))
         );
@@ -99,13 +111,12 @@ public class MenuDriver extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
-    public JButton getjButtonCekNotif() {
-        return jButtonCekNotif;
+    public JButton getjButtonAmbilPesanan() {
+        return jButtonAmbilPesanan;
     }
 
-    public void setjButtonCekNotif(JButton jButtonCekNotif) {
-        this.jButtonCekNotif = jButtonCekNotif;
+    public void setjButtonAmbilPesanan(JButton jButtonAmbilPesanan) {
+        this.jButtonAmbilPesanan = jButtonAmbilPesanan;
     }
 
     public JButton getjButtonRiwayatPesanan() {
@@ -139,15 +150,15 @@ public class MenuDriver extends javax.swing.JFrame {
     public void setjPanel1(JPanel jPanel1) {
         this.jPanel1 = jPanel1;
     }
-    
-    public void AddListener(ActionListener e){
-        jButtonCekNotif.addActionListener(e);
+
+    public void AddListener(ActionListener e) {
+        jButtonAmbilPesanan.addActionListener(e);
         jButtonRiwayatPesanan.addActionListener(e);
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonCekNotif;
+    private javax.swing.JButton jButtonAmbilPesanan;
     private javax.swing.JButton jButtonRiwayatPesanan;
     private javax.swing.JLabel jLabelDriver;
     private javax.swing.JLabel jLabelMenuDriver;

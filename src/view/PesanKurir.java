@@ -8,6 +8,7 @@ package view;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -15,12 +16,12 @@ import javax.swing.JTextField;
  *
  * @author Marwah
  */
-public class Kurir extends javax.swing.JFrame {
+public class PesanKurir extends javax.swing.JFrame {
 
     /**
      * Creates new form Kurir
      */
-    public Kurir() {
+    public PesanKurir() {
         initComponents();
     }
 
@@ -119,9 +120,7 @@ public class Kurir extends javax.swing.JFrame {
                                     .addComponent(jLabelTarif)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(10, 10, 10)
-                                            .addComponent(jButtonPesan))
+                                        .addComponent(jButtonPesan)
                                         .addComponent(jTextFieldTarif, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabelNoTelp)
@@ -130,7 +129,7 @@ public class Kurir extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(104, 104, 104)
                         .addComponent(jLabelKurir)))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,9 +168,9 @@ public class Kurir extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTarif)
                     .addComponent(jTextFieldTarif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jButtonPesan)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(32, 32, 32))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -350,6 +349,14 @@ public class Kurir extends javax.swing.JFrame {
     
     public void AddListener(ActionListener e) {
         jButtonPesan.addActionListener(e);
+    }
+    
+    public void showMessage(String message){
+        JOptionPane.showMessageDialog(null, message);
+    }
+    
+    public void showMessage(String message, String title, int type){
+        JOptionPane.showMessageDialog(null, message, title, type);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

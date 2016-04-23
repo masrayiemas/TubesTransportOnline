@@ -6,7 +6,7 @@
 package model;
 
 import config.Database;
-import config.UserSession;
+import controller.Controller;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,6 +24,7 @@ public class Application {
     private ArrayList<Pelanggan> pelanggan;
     private ArrayList<Pengemudi> pengemudi;
     private ArrayList<Pesanan> pesanan;
+    private ArrayList<Pesanan> kurir;
     private Database db;
 
     public Application() {
@@ -34,9 +35,11 @@ public class Application {
         pelanggan = new ArrayList<>();
         pengemudi = new ArrayList<>();
         pesanan = new ArrayList<>();
+        kurir = new ArrayList<>();
         ResultSet hslPelanggan = null;
         ResultSet hslPengemudi = null;
         ResultSet hslPesanan = null;
+        ResultSet hslPesankurir = null;
         try {
             db.connect();
             Pelanggan p = null;
@@ -59,8 +62,29 @@ public class Application {
                     x.createPesanan(hslPesanan.getString(1), hslPesanan.getString(2),
                             hslPesanan.getString(3), hslPesanan.getString(4),
                             hslPesanan.getInt(5), hslPesanan.getInt(7),
-                            hslPesanan.getBoolean(8), p.getJenKel());
+                            hslPesanan.getBoolean(8), x.getJenKel());
                     pesanan.add(x.getPesanan(hslPesanan.getString(1)));
+                }
+            }
+            
+            for(Pelanggan pz : pelanggan){
+                System.out.print(pz.getJenKel() + " wow ");
+                for(int i = 0; i < pz.getJmlPesanan(); i++){
+                    System.out.println(pz.getPesanan(i).getJk());
+                }
+            }
+            
+            for (Pelanggan x : pelanggan) {
+                String qPesanan = "select * from t_pesanan where id_pelanggan= "
+                        + "'" + x.getIdPelanggan() + "' AND jenis_pesanan='Kurir'";
+                hslPesankurir = db.getData(qPesanan);
+                while (hslPesankurir.next()) {
+                    x.createPesanKurir(hslPesankurir.getString(1), hslPesankurir.getString(2),
+                            hslPesankurir.getString(3), hslPesankurir.getString(4),
+                            hslPesankurir.getInt(5), hslPesankurir.getString(6),
+                            hslPesankurir.getInt(7), hslPesankurir.getBoolean(8), x.getJenKel());
+                    kurir.add(x.getPesanan(hslPesankurir.getString(1)));
+                    System.out.println(x.getPesanan(hslPesankurir.getString(1)).getIdTrans()+"ray");
                 }
             }
             
@@ -92,7 +116,10 @@ public class Application {
         } catch (SQLException ex) {
             System.out.println("Load Gagal");
         }
-
+    }
+    
+    public ArrayList<Pelanggan> getAllPelanggan(){
+        return pelanggan;
     }
 
     public boolean insertPelanggan(Pelanggan p) throws SQLException {
@@ -142,7 +169,9 @@ public class Application {
 
     public boolean insertPesanan(Kurir k, String idPelanggan) throws SQLException {
         db.connect();
-        String query = "insert into t_pelanggan values ('" + k.getIdTrans()
+        String query = "insert into t_pesanan(id_transaksi, jenis_pesanan, alamat,"
+                + "tujuan, jarak, nama_barang, tarif, status, id_pelanggan) "
+                + "values ('" + k.getIdTrans()
                 + "', '" + k.getJenisPesanan() + "', '" + k.getAlamat()
                 + "', '" + k.getTujuan() + "', " + k.getJarak() + ", '"
                 + k.getNamaBarang() + "', " + k.getTarif() + ", "
@@ -197,26 +226,38 @@ public class Application {
         }
         return null;
     }
-    
-    public boolean cekLoginPelanggan(Pelanggan p) throws SQLException {
-        db.connect();
-        String query = "select * from t_pelanggan where nama_pelanggan = '"
-                + p.getNama() + "' and no_telp = '" + p.getNoTelp() + "'";
-        ResultSet hasil = db.getData(query);
-        if (hasil.next()) {
-            UserSession.setId_ss(hasil.getString("id_pelanggan"));
-            UserSession.setNama_ss(hasil.getString("nama_pelanggan"));
-            UserSession.setJenkel_ss(hasil.getString("jenis_kelamin"));
-            UserSession.setNotelp_ss(hasil.getString("no_telp"));
-            db.disconnect();
-            System.out.println("Login Sukses");
-            return true;
-        } else {
-            db.disconnect();
-            System.out.println("Gagal Login");
-            return false;
+    public Pengemudi loginPengemudi(String nama, String no_telp){
+        for(Pengemudi d : pengemudi){
+            System.out.println(nama);
+            System.out.println(no_telp);
+            System.out.println(d.getNama());
+            System.out.println(d.getNoTelp());
+            if(d.getNama().equals(nama) && d.getNoTelp().equals(no_telp)){
+                return d;
+            }
         }
+        return null;
     }
+    
+//    public boolean cekLoginPelanggan(Pelanggan p) throws SQLException {
+//        db.connect();
+//        String query = "select * from t_pelanggan where nama_pelanggan = '"
+//                + p.getNama() + "' and no_telp = '" + p.getNoTelp() + "'";
+//        ResultSet hasil = db.getData(query);
+//        if (hasil.next()) {
+//            UserSession.setId_ss(hasil.getString("id_pelanggan"));
+//            UserSession.setNama_ss(hasil.getString("nama_pelanggan"));
+//            UserSession.setJenkel_ss(hasil.getString("jenis_kelamin"));
+//            UserSession.setNotelp_ss(hasil.getString("no_telp"));
+//            db.disconnect();
+//            System.out.println("Login Sukses");
+//            return true;
+//        } else {
+//            db.disconnect();
+//            System.out.println("Gagal Login");
+//            return false;
+//        }
+//    }
 
     public boolean updatePelanggan(Pelanggan p) throws SQLException {
         db.connect();

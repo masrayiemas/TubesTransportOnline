@@ -45,8 +45,8 @@ public class Pesanan {
 
     }
 
-    public Pesanan(String idTrans, String jenisPesanan, String alamat , String tujuan, int tarif, 
-                    int jarak, boolean status, String jk) {
+    public Pesanan(String idTrans, String jenisPesanan, String alamat , String tujuan, int jarak,
+                    int tarif, boolean status, String jk) {
         this.idTrans = idTrans;
         this.jenisPesanan = jenisPesanan;
         this.tujuan = tujuan;

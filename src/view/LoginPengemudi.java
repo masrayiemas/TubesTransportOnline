@@ -18,19 +18,19 @@ import javax.swing.JTextField;
  *
  * @author Marwah
  */
-public class Login extends javax.swing.JFrame {
+public class LoginPengemudi extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public LoginPengemudi() {
         initComponents();
         setFrameToCenter();
     }
     
     public void setFrameToCenter() {
         Dimension scrnSize = Toolkit.getDefaultToolkit( ).getScreenSize();
-        int w = getSize( ).width+900;
+        int w = getSize( ).width+90;
         int h = getSize( ).height;
         int x = ((scrnSize.width-w));
         int y = ((scrnSize.height-h+10) / 2);

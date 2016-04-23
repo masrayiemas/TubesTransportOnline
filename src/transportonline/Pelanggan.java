@@ -69,11 +69,22 @@ public class Pelanggan extends Orang implements Serializable {
         jmlPesanan++;
     }
 
-    public void createPesananKurir(String jenisPesanan, String alamat,
-            String tujuan, int jarak, int tarif, String namaBarang) {
-        pesanan[jmlPesanan] = new Kurir(jenisPesanan,
-                alamat, tujuan, jarak, tarif, namaBarang, super.getJenKel());
+    public void createPesanKurir(String idTrans, String jenisPesanan, String alamat,
+            String tujuan, int jarak, String namaBarang, int tarif, boolean status,
+            String jk) {
+        pesanan[jmlPesanan] = new Kurir(idTrans, jenisPesanan,
+                alamat, tujuan, jarak, namaBarang, tarif, status, jk);
         jmlPesanan++;
+    }
+    
+    public Kurir createPesananKurir(String jenisPesanan, String alamat,
+            String tujuan, int jarak, int tarif, String namaBarang) {
+        Kurir k = null;
+        pesanan[jmlPesanan] = new Kurir(jenisPesanan,
+                alamat, tujuan, jarak,  namaBarang, tarif, super.getJenKel());
+        k = (Kurir) pesanan[jmlPesanan];
+        jmlPesanan++;
+        return k;
     }
 
     public void removePesanan(String idTrans) {

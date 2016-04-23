@@ -79,10 +79,7 @@
                                       <Component id="jLabelTarif" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                              <Component id="jButtonPesan" min="-2" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jButtonPesan" min="-2" max="-2" attributes="0"/>
                                           <Component id="jTextFieldTarif" pref="203" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -99,7 +96,7 @@
                           <Component id="jLabelKurir" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="44" max="32767" attributes="0"/>
+                  <EmptySpace pref="45" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -148,9 +145,9 @@
                       <Component id="jLabelTarif" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTextFieldTarif" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
                   <Component id="jButtonPesan" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
