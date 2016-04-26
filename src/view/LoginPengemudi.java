@@ -53,7 +53,6 @@ public class LoginPengemudi extends javax.swing.JFrame {
         txtNama = new javax.swing.JTextField();
         txtNotelp = new javax.swing.JTextField();
         jButtonLogin = new javax.swing.JButton();
-        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,8 +63,6 @@ public class LoginPengemudi extends javax.swing.JFrame {
         jLabelNoTelp.setText("No. Telepon                      :");
 
         jButtonLogin.setText("Login");
-
-        jButtonBack.setText("Back");
 
         javax.swing.GroupLayout jPanelLoginLayout = new javax.swing.GroupLayout(jPanelLogin);
         jPanelLogin.setLayout(jPanelLoginLayout);
@@ -83,17 +80,12 @@ public class LoginPengemudi extends javax.swing.JFrame {
                         .addComponent(jLabelLogin))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addGap(48, 48, 48)
-                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonLogin)
-                            .addComponent(jLabelNoTelp))
+                        .addComponent(jLabelNoTelp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelLoginLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtNotelp, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelLoginLayout.createSequentialGroup()
-                                .addGap(55, 55, 55)
-                                .addComponent(jButtonBack)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                            .addComponent(jButtonLogin)
+                            .addComponent(txtNotelp, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanelLoginLayout.setVerticalGroup(
             jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,11 +100,9 @@ public class LoginPengemudi extends javax.swing.JFrame {
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNoTelp)
                     .addComponent(txtNotelp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonLogin)
-                    .addComponent(jButtonBack))
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addComponent(jButtonLogin)
+                .addContainerGap(81, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -169,14 +159,6 @@ public class LoginPengemudi extends javax.swing.JFrame {
         this.jPanelLogin = jPanelLogin;
     }
 
-    public JButton getjButtonBack() {
-        return jButtonBack;
-    }
-
-    public void setjButtonBack(JButton jButtonBack) {
-        this.jButtonBack = jButtonBack;
-    }
-
     public JTextField getTxtNama() {
         return txtNama;
     }
@@ -195,7 +177,7 @@ public class LoginPengemudi extends javax.swing.JFrame {
 
     public void addListener(ActionListener e){
         jButtonLogin.addActionListener(e);
-        jButtonBack.addActionListener(e);
+        
     }
     
      public void showMessage(String message){
@@ -207,7 +189,6 @@ public class LoginPengemudi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonLogin;
     private javax.swing.JLabel jLabelLogin;
     private javax.swing.JLabel jLabelNama;

@@ -6,7 +6,6 @@
 package controller;
 
 import config.Database;
-import config.UserSession;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -53,7 +52,8 @@ public class Controller extends MouseAdapter implements ActionListener {
     private PesanKurir psnkurir;
     private RiwayatPemesanan rpms;
     private RiwayatPesanan rps;
-    private PesananView psn;
+    private PesananView psnview;
+    private RiwayatPesanan rpsn;
     public static Pelanggan plgSess;
     public static Pengemudi pngSess;
 
@@ -68,13 +68,15 @@ public class Controller extends MouseAdapter implements ActionListener {
         menupeng = new MenuPengemudi();
         rpms = new RiwayatPemesanan();
         rps = new RiwayatPesanan();
-        psn = new PesananView();
+        psnview = new PesananView();
         psnkurir = new PesanKurir();
+        rpsn = new RiwayatPesanan();
+
         app.loadData();
         loginPng.addListener(this);
         rpms.AddListener(this);
         rps.AddListener(this);
-        psn.AddListener(this);
+        psnview.AddListener(this);
         psnkurir.AddListener(this);
         index.AddListener(this);
         pesan.AddListener(this);
@@ -84,6 +86,7 @@ public class Controller extends MouseAdapter implements ActionListener {
         loginPlg.addListener(this);
         index.setVisible(true);
         loginPng.setVisible(true);
+        rpsn.AddListener(this);
     }
 
     @Override
@@ -109,12 +112,22 @@ public class Controller extends MouseAdapter implements ActionListener {
                 if (app.insertPelanggan(p)) {
                     signUp.showMessage("Insert Berhasil !!");
                     app.loadData();
+                    signUp.setVisible(false);
+                    index.setVisible(true);
                 } else {
                     signUp.showMessage("Insert gagal coy !!!", "ERROR INSERT",
                             JOptionPane.ERROR_MESSAGE);
                 }
             } catch (SQLException ex) {
                 System.out.println("Insert Error");
+            }
+        }
+        if (src.equals(signUp.getjButtonBack())) {
+            try {
+                signUp.setVisible(false);
+                index.setVisible(true);
+            } catch (Exception ae) {
+                ae.printStackTrace();
             }
         }
 
@@ -151,6 +164,14 @@ public class Controller extends MouseAdapter implements ActionListener {
                 ae.printStackTrace();
             }
         }
+        if (src.equals(loginPlg.getjButtonBack())) {
+            try {
+                loginPlg.setVisible(false);
+                index.setVisible(true);
+            } catch (Exception ae) {
+                ae.printStackTrace();
+            }
+        }
 
         //Menu Pelanggan
         if (src.equals(menupel.getjButtonTransportasi())) {
@@ -171,7 +192,29 @@ public class Controller extends MouseAdapter implements ActionListener {
                 ae.printStackTrace();
             }
         }
-        if(src.equals(menupel.getjButtonKurir())){
+        if (src.equals(rpms.getjButtonCancelPesanan())) {
+            try {
+                String id_trans = rpms.getjTableRiwayat().getValueAt(
+                        rpms.getjTableRiwayat().getSelectedRow(), 0).toString();
+                System.out.println(id_trans);
+                Pesanan p = app.searchPesanan(id_trans);
+                if (p != null) {
+                    plgSess.removePesanan(p.getIdTrans());
+                    try {
+                        if (app.deletePesanan(p)) {
+                            rpms.showMessage("Pesanan Berhasil Dibatalkan");
+                            app.loadData();
+                            addPemesananToTable(rpms.getjTableRiwayat(), plgSess);
+                        }
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            } catch (Exception ae) {
+                ae.printStackTrace();
+            }
+        }
+        if (src.equals(menupel.getjButtonKurir())) {
             try {
                 menupel.setVisible(false);
                 psnkurir.setVisible(true);
@@ -179,17 +222,18 @@ public class Controller extends MouseAdapter implements ActionListener {
                 ae.printStackTrace();
             }
         }
-        if (src.equals(rpms.getjButtonCancelPesanan())) {
+        if (src.equals(rpms.getBtnBack())) {
             menupel.setVisible(true);
             rpms.setVisible(false);
         }
+
 
         //MenuPengemudi
         if (src.equals(menupeng.getjButtonAmbilPesanan())) {
             try {
                 menupeng.setVisible(false);
-                addPesananToTable(psn.getjTablePesanan(), app.getAllPelanggan(), pngSess);
-                psn.setVisible(true);
+                addPesananToTable(psnview.getjTablePesanan(), app.getAllPelanggan(), pngSess);
+                psnview.setVisible(true);
             } catch (Exception xe) {
                 xe.printStackTrace();
             }
@@ -227,14 +271,14 @@ public class Controller extends MouseAdapter implements ActionListener {
             }
         }
         //PesananKurir
-        if(src.equals(psnkurir.getjButtonPesan())){
+        if (src.equals(psnkurir.getjButtonPesan())) {
             try {
                 Kurir k = plgSess.createPesananKurir("Kurir", psnkurir.getjTextFieldLokasi().getText(),
                         psnkurir.getjTextFieldTujuan().getText(),
                         Integer.parseInt(psnkurir.getjTextFieldJarak().getText()),
                         Integer.parseInt(psnkurir.getjTextFieldTarif().getText()),
                         psnkurir.getjTextFieldJenisBarang().getText());
-                if(app.insertPesanan(k, plgSess.getIdPelanggan())){
+                if (app.insertPesanan(k, plgSess.getIdPelanggan())) {
                     psnkurir.showMessage("Pesanan Sukses");
                     app.loadData();
                     psnkurir.getjTextFieldJarak().setText("");
@@ -259,6 +303,47 @@ public class Controller extends MouseAdapter implements ActionListener {
             }
         }
 
+        //AmbilPesanan
+        if (src.equals(psnview.getjButtonAmbilPesanan())) {
+            String id_trans = psnview.getjTablePesanan().getValueAt(
+                    psnview.getjTablePesanan().getSelectedRow(), 0).toString();
+            System.out.println(id_trans);
+            Pesanan p = app.searchPesanan(id_trans);
+            if (p != null) {
+                pngSess.takePesanan(p);
+                try {
+                    if (app.updatePesanan(p, pngSess.getIdPengemudi())) {
+                        psnview.showMessage("Ambil Pesanan Berhasil");
+                        psnview.setVisible(false);
+                        menupeng.setVisible(true);
+                    }
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            } else {
+                System.out.println("Salah ID");
+            }
+        }
+
+        if (src.equals(psnview.getBnBack())) {
+            try {
+                psnview.setVisible(false);
+                menupeng.setVisible(true);
+            } catch (Exception ae) {
+                ae.printStackTrace();
+            }
+        }
+        
+        //Riwayat Pesanan Pengemudi 
+        if(src.equals(menupeng.getjButtonRiwayatPesanan())){
+            try {
+                menupeng.setVisible(false);
+                addRiwayatPesananToTable(rpsn.getjTableRiwayatPsn(), pngSess);
+                rpsn.setVisible(true);
+            } catch (Exception es) {
+                es.printStackTrace();
+            }
+        }
     }
 
     public void addPemesananToTable(JTable table, Pelanggan p) throws SQLException {
@@ -282,17 +367,27 @@ public class Controller extends MouseAdapter implements ActionListener {
         }
         table.setModel(tb);
     }
+    
+    public void addRiwayatPesananToTable(JTable table, Pengemudi p){
+        String[] columnPesanan = {"id_transaksi", "jenis_pesanan", "tarif"};
+        DefaultTableModel tb = new DefaultTableModel(columnPesanan, 0);
+        for(int i=0; i<p.getJmlPesanan(); i++){
+            String[] data = {p.getPesanan(i).getIdTrans(), p.getPesanan(i).getJenisPesanan(),
+                             String.valueOf(p.getPesanan(i).getTarif())};
+            tb.addRow(data);
+        }
+        table.setModel(tb);
+    }
 
     public void addPesananToTable(JTable table, ArrayList<Pelanggan> p, Pengemudi d) throws SQLException {
-        Database db = new Database();
-        db.connect();
         String[] columnPesanan = {"id_transaksi", "jenis_pesanan", "barang", "alamat",
             "tujuan", "status", "nama_pelanggan"};
         DefaultTableModel tb = new DefaultTableModel(columnPesanan, 0);
         for (Pelanggan x : p) {
             for (int i = 0; i < x.getJmlPesanan(); i++) {
                 if (x.getPesanan(i).getStatus()
-                        && x.getPesanan(i).getJk().equals(d.getJenKel())) {
+                        && x.getPesanan(i).getJk().equals(d.getJenKel())
+                        && x.getPesanan(i).getJenisPesanan().equals("Transport")) {
                     System.out.println(x.getPesanan(i).getJk());
                     System.out.println(d.getJenKel());
                     String[] data = {x.getPesanan(i).getIdTrans(), x.getPesanan(i).getJenisPesanan(), "",
@@ -300,6 +395,13 @@ public class Controller extends MouseAdapter implements ActionListener {
                         String.valueOf(x.getPesanan(i).getStatus()), x.getNama()
                     };
                     tb.addRow(data);
+                }
+                if (x.getPesanan(i).getStatus() && x.getPesanan(i).getJenisPesanan().equals("Kurir")) {
+                    String[] datab = {x.getPesanan(i).getIdTrans(), x.getPesanan(i).getJenisPesanan(), "",
+                        x.getPesanan(i).getAlamat(), x.getPesanan(i).getTujuan(),
+                        String.valueOf(x.getPesanan(i).getStatus()), x.getNama()
+                    };
+                    tb.addRow(datab);
                 }
             }
         }

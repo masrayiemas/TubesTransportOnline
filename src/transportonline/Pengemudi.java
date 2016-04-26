@@ -55,6 +55,12 @@ public class Pengemudi extends Orang implements Serializable{
         jmlPesanan++;
     }
     
+    public void takePesanan(Pesanan p){
+        pesanan[jmlPesanan] = p;
+        p.setTaken();
+        jmlPesanan++;
+    }
+    
     public void addPesanan(Pesanan p) {
         if (p.getJenisPesanan().equals("Kurir")) {
             pesanan[jmlPesanan] = p;

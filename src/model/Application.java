@@ -56,7 +56,7 @@ public class Application {
 
             for (Pelanggan x : pelanggan) {
                 String qPesanan = "select * from t_pesanan where id_pelanggan= "
-                        + "'" + x.getIdPelanggan() + "'";
+                        + "'" + x.getIdPelanggan() + "' AND jenis_pesanan = 'Transport'";
                 hslPesanan = db.getData(qPesanan);
                 while (hslPesanan.next()) {
                     x.createPesanan(hslPesanan.getString(1), hslPesanan.getString(2),
@@ -67,12 +67,6 @@ public class Application {
                 }
             }
             
-            for(Pelanggan pz : pelanggan){
-                System.out.print(pz.getJenKel() + " wow ");
-                for(int i = 0; i < pz.getJmlPesanan(); i++){
-                    System.out.println(pz.getPesanan(i).getJk());
-                }
-            }
             
             for (Pelanggan x : pelanggan) {
                 String qPesanan = "select * from t_pesanan where id_pelanggan= "
@@ -84,13 +78,9 @@ public class Application {
                             hslPesankurir.getInt(5), hslPesankurir.getString(6),
                             hslPesankurir.getInt(7), hslPesankurir.getBoolean(8), x.getJenKel());
                     kurir.add(x.getPesanan(hslPesankurir.getString(1)));
-                    System.out.println(x.getPesanan(hslPesankurir.getString(1)).getIdTrans()+"ray");
                 }
             }
             
-            for(Pesanan x : pesanan){
-                System.out.println(x.getIdTrans());
-            }
 
             hslPengemudi = db.getData(query2);
 
@@ -120,6 +110,10 @@ public class Application {
     
     public ArrayList<Pelanggan> getAllPelanggan(){
         return pelanggan;
+    }
+    
+    public ArrayList<Pengemudi> getAllPengemudi(){
+        return pengemudi;
     }
 
     public boolean insertPelanggan(Pelanggan p) throws SQLException {
@@ -184,6 +178,20 @@ public class Application {
             return false;
         }
     }
+    
+    public Pesanan searchPesanan(String idTrans){
+        for(Pesanan x : pesanan){
+            if(x.getIdTrans().equals(idTrans)){
+                return x;
+            }
+        }
+        for(Pesanan x : kurir){
+            if(x.getIdTrans().equals(idTrans)){
+                return x;
+            }
+        }
+        return null;
+    }
 
     public boolean deletePelanggan(Pelanggan pe) throws SQLException {
         String query = "delete from Pelanggan where idPelanggan = '" + pe.getIdPelanggan() + "'";
@@ -208,7 +216,7 @@ public class Application {
     }
 
     public boolean deletePesanan(Pesanan ps) throws SQLException {
-        String query = "delete from Pesanan where idTrans = '" + ps.getIdTrans() + "'";
+        String query = "delete from t_pesanan where id_transaksi = '" + ps.getIdTrans() + "'";
         if (db.manipulasiData(query)) {
             db.disconnect();
             return true;
@@ -291,14 +299,11 @@ public class Application {
 
     }
 
-    public boolean updatePesanan(Pesanan t, String idPelanggan) throws SQLException {
+    public boolean updatePesanan(Pesanan t, String idPengemudi) throws SQLException {
         db.connect();
-        String query = "update t_pesanan set jenis_pesanan = '" + t.getJenisPesanan() + "', '"
-                + "set alamat = '" + t.getAlamat()
-                + "', '" + "set tujuan ='" + t.getTujuan() + "', "
-                + "set jarak = '" + t.getJarak() + ", "
-                + "set tarif = '" + t.getTarif() + ", " + "set status = '" + t.getStatus()
-                + "where id_transaksi = '" + t.getIdTrans() + "')";
+        String query = "update t_pesanan set status = " + t.getStatus()
+                + ", id_pengemudi = '" + idPengemudi + "' where id_transaksi = '" 
+                + t.getIdTrans() + "'";
         if (db.manipulasiData(query)) {
             db.disconnect();
             return true;
@@ -308,7 +313,7 @@ public class Application {
         }
     }
 
-    public boolean updatePesanan(Kurir k, String idPelanggan) throws SQLException {
+    public boolean updatePesananKurir(Kurir k, String idPelanggan) throws SQLException {
         db.connect();
         String query = "update t_pesanan set jenis_pesanan = '" + k.getJenisPesanan() + "', '"
                 + "set alamat = '" + k.getAlamat()

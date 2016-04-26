@@ -69,7 +69,7 @@ public class RiwayatPesanan extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTableRiwayatPsn);
 
-        jButtonCancelPesanan.setText("Cancel Pesanan");
+        jButtonCancelPesanan.setText("Back");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -78,17 +78,17 @@ public class RiwayatPesanan extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 569, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(246, 246, 246)
                                 .addComponent(jLabelRiwayatPesanan))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(235, 235, 235)
-                                .addComponent(jButtonCancelPesanan)))
-                        .addGap(0, 235, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                                .addComponent(jButtonCancelPesanan, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
